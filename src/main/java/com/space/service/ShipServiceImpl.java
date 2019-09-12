@@ -42,7 +42,6 @@ public class ShipServiceImpl implements ShipService {
 
         /*Если @param order не равен null, получаем сортированный список по @param order,
           иначе получаем несортированный список*/
-
         List<Ship> shipsToFiltered = order != null ?
                 shipRepository.findAll(Sort.by(order.getFieldName(), "id"))
                 : shipRepository.findAll();
