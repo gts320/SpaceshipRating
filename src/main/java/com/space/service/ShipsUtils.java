@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 //Вспомагательный класс
-
 @Service
 public class ShipsUtils {
     //Фильтрация списка кораблей
@@ -46,7 +45,9 @@ public class ShipsUtils {
         return shipsToFiltered;
     }
 
-    //Проверка параметров корабля на корректность
+    /*Проверка параметров корабля на корректность.
+        Если какой либо параметр равен null или имеет некорректное значение,
+        отвечаем ошибкой с кодом 400*/
     static void validateParameters(Ship ship) {
         if (Objects.isNull(ship.getName())
                 || Objects.isNull(ship.getPlanet())
