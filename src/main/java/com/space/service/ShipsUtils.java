@@ -46,8 +46,8 @@ public class ShipsUtils {
     }
 
     /*Проверка параметров корабля на корректность.
-        Если какой либо параметр равен null или имеет некорректное значение,
-        отвечаем ошибкой с кодом 400*/
+    Если какой либо параметр равен null или имеет некорректное значение,
+    отвечаем ошибкой с кодом 400*/
     static void validateParameters(Ship ship) {
         if (Objects.isNull(ship.getName())
                 || Objects.isNull(ship.getPlanet())
