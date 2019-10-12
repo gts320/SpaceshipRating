@@ -47,7 +47,7 @@ public class ShipServiceImpl implements ShipService {
                 : shipRepository.findAll();
 
         //Получаем фильтрованный список
-        List<Ship> filteredShips = ShipsUtils.filterShips(
+        List<Ship> filteredShips = ShipUtils.filterShips(
                 shipsToFiltered, name, planet, shipType, after, before, isUsed, minSpeed,
                 maxSpeed, minCrewSize, maxCrewSize, minRating, maxRating);
 
@@ -80,7 +80,7 @@ public class ShipServiceImpl implements ShipService {
                                  Double maxRating) {
 
         //Получаем фильтрованный список
-        return ShipsUtils.filterShips(
+        return ShipUtils.filterShips(
                 shipRepository.findAll(), name, planet, shipType, after, before, isUsed,
                 minSpeed, maxSpeed, minCrewSize, maxCrewSize, minRating, maxRating).size();
     }
@@ -92,7 +92,7 @@ public class ShipServiceImpl implements ShipService {
         if (Objects.isNull(requestBody)) return null;
 
         //Проверяем на корректность параметры создаваемого корабля
-        ShipsUtils.validateParameters(requestBody);
+        ShipUtils.validateParameters(requestBody);
 
         //Создаем новый корабль
         Ship creatingShip = new Ship();
@@ -105,7 +105,7 @@ public class ShipServiceImpl implements ShipService {
         creatingShip.setUsed(Objects.nonNull(requestBody.isUsed()) ? requestBody.isUsed() : false);
         creatingShip.setSpeed(requestBody.getSpeed());
         creatingShip.setCrewSize(requestBody.getCrewSize());
-        creatingShip.setRating(ShipsUtils.computeShipRating(requestBody));
+        creatingShip.setRating(ShipUtils.computeShipRating(requestBody));
 
         //Сохраняем созданный корабль в БД
         shipRepository.save(creatingShip);
@@ -149,7 +149,7 @@ public class ShipServiceImpl implements ShipService {
 
         if (Objects.nonNull(requestBody.getProdDate())) {
             if (requestBody.getProdDate().getTime() > 0
-                    && ShipsUtils.validateProdDate(requestBody.getProdDate()))
+                    && ShipUtils.validateProdDate(requestBody.getProdDate()))
                 updatingShip.setProdDate(requestBody.getProdDate());
             else throw new Bad_Request_Exception();
         }
@@ -168,7 +168,7 @@ public class ShipServiceImpl implements ShipService {
             else throw new Bad_Request_Exception();
 
         //Рассчитываем рейтинг корабля
-        Double rating = ShipsUtils.computeShipRating(updatingShip);
+        Double rating = ShipUtils.computeShipRating(updatingShip);
 
         updatingShip.setRating(rating);
         //Сохраняем обновленный корабль в БД

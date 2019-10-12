@@ -10,7 +10,7 @@ import java.util.*;
 
 //Вспомагательный класс
 @Service
-public class ShipsUtils {
+public class ShipUtils {
     //Фильтрация списка кораблей
     static List<Ship> filterShips(List<Ship> shipsToFiltered,
                                   String name,
